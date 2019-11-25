@@ -4,8 +4,8 @@
             <a href="index.html" class="branding">
                 <img src="images/logo.png" alt="" class="logo">
                 <div class="logo-type">
-                    <h1 class="site-title">Company name</h1>
-                    <small class="site-description">tagline goes here</small>
+                    <h1 class="site-title">TP Meteo</h1>
+                    <small class="site-description">Découverte de VueJS</small>
                 </div>
             </a>
 
