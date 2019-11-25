@@ -1,0 +1,16 @@
+<template>
+    <div class="hero" style="background-image: url('images/banner.png')">
+        <div class="container">
+            <form action="#" class="find-location">
+                <input type="text" placeholder="Find your location...">
+                <input type="submit" value="Find">
+            </form>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: 'SearchCity'
+    }
+</script>
