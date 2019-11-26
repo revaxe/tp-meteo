@@ -2,20 +2,20 @@
     <div class="forecast-table">
         <div class="container">
             <div class="forecast-container">
-                <CardWeatherLarge :prevision="previsions[0]"/>
-                <CardWeatherSmall v-for="prevision in previsions" :key="prevision.jour" :prevision="prevision"/>
+                <ItemWeatherLarge :prevision="previsions[0]"/>
+                <ItemWeatherSmall v-for="(prevision, index) in previsions" :key="index" :prevision="prevision"/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import CardWeatherSmall from '@/components/CardWeatherSmall.vue'
-    import CardWeatherLarge from '@/components/CardWeatherLarge.vue'
+    import ItemWeatherSmall from '@/components/ItemWeatherSmall.vue'
+    import ItemWeatherLarge from '@/components/ItemWeatherLarge.vue'
 
     export default {
         components: {
-            CardWeatherSmall, CardWeatherLarge
+            ItemWeatherSmall, ItemWeatherLarge
         },
         data() {
             return {

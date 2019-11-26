@@ -3,19 +3,19 @@
 
         <SearchCity/>
 
-        <CardsWeather/>
+        <CardWeather/>
 
     </div>
 </template>
 
 <script>
     import SearchCity from '@/components/SearchCity.vue'
-    import CardsWeather from '@/components/CardsWeather.vue'
+    import CardWeather from '@/components/CardWeather.vue'
 
     export default {
         name: 'home',
         components: {
-            SearchCity, CardsWeather
+            SearchCity, CardWeather
         }
     }
 </script>
