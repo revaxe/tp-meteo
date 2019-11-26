@@ -5,12 +5,17 @@
                 <input type="text" v-model="ville" placeholder="Trouver votre ville..." :class="{'error': ville === ''}">
                 <input type="submit" value="Rechercher">
             </form>
+            <ul class="autocomplete-result-list" role="listbox" id="autocomplete-result-list-1"
+                style="position: absolute; z-index: 1; width: 100%; box-sizing: border-box; visibility: visible; pointer-events: auto; top: 100%;">
+                <li id="autocomplete-result-0" class="autocomplete-result" data-result-index="0" role="option">France</li>
+            </ul>
         </div>
     </div>
 </template>
 
 <script>
     import {PhotoService} from '@/services'
+    import {LocationService} from '@/services'
 
     export default {
         data() {
@@ -34,6 +39,8 @@
                     let photos = await PhotoService.getPhotosByCity(this.ville);
                     this.photos = photos.hits;
 
+                    let cities = await LocationService.searchCity(this.ville);
+                    console.log(cities);
                 }
             }
         }

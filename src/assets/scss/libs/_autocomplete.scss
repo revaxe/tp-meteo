@@ -1,0 +1,20 @@
+// https://autocomplete.trevoreyre.com/#/
+
+[data-position=below] .autocomplete-result-list {
+  margin-top: -1px;
+  border-top-color: transparent;
+  border-radius: 0 0 8px 8px;
+  padding-bottom: 8px;
+}
+
+.autocomplete-result-list {
+  padding: 0;
+}
+
+.autocomplete-result {
+  cursor: default;
+  padding: 12px 12px 12px 48px;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zd…NsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCIvPjxwYXRoIGQ9Ik0yMSAyMWwtNC00Ii8+PC9zdmc+);
+  background-repeat: no-repeat;
+  background-position: 12px;
+}

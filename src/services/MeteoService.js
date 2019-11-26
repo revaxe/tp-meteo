@@ -5,11 +5,11 @@ const urlApi = 'https://api.openweathermap.org/data/2.5';
 
 export const MeteoService = {
     getCurrent: ville => {
-        return fetch(`${urlApi}/weather?APPID=${keyApi}&q=${ville}`)
+        return fetch(`${urlApi}/weather?APPID=${keyApi}&q=${ville}&units=metric`)
             .then(response => response.json())
     },
     get5DayForcast: ville => {
-        return fetch(`${urlApi}/forecast?APPID=${keyApi}&q=${ville}`)
+        return fetch(`${urlApi}/forecast?APPID=${keyApi}&q=${ville}&units=metric`)
             .then(response => response.json())
     }
 };
