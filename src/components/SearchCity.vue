@@ -2,47 +2,71 @@
     <div class="hero" v-lazy:background-image="urlPhoto">
         <div class="container">
             <form @submit="rechercher" method="post" class="find-location">
-                <input type="text" v-model="ville" placeholder="Trouver votre ville..." :class="{'error': ville === ''}">
+                <Autocomplete :propositions="cities" :select="selectCity" :transformText="getLabelCity">
+                    <input slot="input" v-model="form.city"
+                           placeholder="Trouver votre ville..." type="text"
+                           :class="{'error': form.city === '' && city !== undefined}">
+                </Autocomplete>
                 <input type="submit" value="Rechercher">
             </form>
-            <ul class="autocomplete-result-list" role="listbox" id="autocomplete-result-list-1"
-                style="position: absolute; z-index: 1; width: 100%; box-sizing: border-box; visibility: visible; pointer-events: auto; top: 100%;">
-                <li id="autocomplete-result-0" class="autocomplete-result" data-result-index="0" role="option">France</li>
-            </ul>
         </div>
     </div>
 </template>
 
 <script>
+    import {mapState} from 'vuex'
     import {PhotoService} from '@/services'
     import {LocationService} from '@/services'
+    import Autocomplete from '@/components/Autocomplete.vue'
 
     export default {
+        components: {Autocomplete},
         data() {
             return {
-                ville: '',
+                form: {
+                    city: ''
+                },
+                cities: undefined,
                 photos: undefined
             }
         },
         computed: {
             urlPhoto: function () {
                 return this.photos && this.photos.length > 0
-                    ? this.photos[Math.floor(Math.random() * this.photos.length)].largeImageURL
-                    : 'images/banner.png'
-            }
+                    ? this.photos[Math.floor(Math.random() * this.photos.length)].largeImageURL : 'images/banner.png'
+            },
+            ...mapState([
+                // attacher `this.count` à `store.state.count`
+                'city'
+            ])
         },
         methods: {
             async rechercher(e) {
-                e.preventDefault();
-                if (!this._.isEmpty(this.ville)) {
-                    console.log(this.ville);
-                    let photos = await PhotoService.getPhotosByCity(this.ville);
-                    this.photos = photos.hits;
-
-                    let cities = await LocationService.searchCity(this.ville);
-                    console.log(cities);
+                if (e) e.preventDefault();
+                if (!this._.isEmpty(this.form.city)) {
+                    this.cities = await LocationService.searchCity(this.form.city);
                 }
+            },
+            async selectCity(city) {
+                this.cities = undefined;
+                this.$store.dispatch('updateCity', city);
+                this.photos = await PhotoService.getPhotosByCity(this.city.address.city);
+            },
+            getLabelCity: function (city) {
+                return city ? `${city.address.city}, ${city.address.country}` : ''
             }
-        }
+        },
+        watch: {
+            'form.city': function (val) {
+                if (val.length > 3 && !this._.isEqual(val, this.getLabelCity(this.city))) {
+                    this.rechercher()
+                } else if (val.length === 0) {
+                    this.cities = undefined;
+                }
+            },
+            'city': function (val) {
+                this.form.city = this.getLabelCity(val);
+            }
+        },
     }
 </script>

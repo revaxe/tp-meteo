@@ -5,5 +5,6 @@ export const PhotoService = {
     getPhotosByCity: ville => {
         return fetch(`${urlApi}/api/?key=${keyApi}&image_type=photo&orientation=horizontal&q=${ville}+city`)
             .then(response => response.json())
+            .then(data => data.hits)
     }
 };

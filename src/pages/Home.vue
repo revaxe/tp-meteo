@@ -20,8 +20,10 @@
         },
         async created() {
             let position = await this.$getLocation();
-            let city = await LocationService.getLocationFromPosition(position);
-            console.log(city);
+            let proposition = await LocationService.getLocationFromPosition(position);
+
+            let result = await LocationService.searchCity(proposition.Address.City);
+            this.$store.dispatch('updateCity', result[0]);
         }
     }
 </script>

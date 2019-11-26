@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.css';
 import '@/assets/scss/style.scss';
 import globalMixins from './globalMixins';
 import lang from 'element-ui/lib/locale/lang/en';
@@ -10,17 +9,20 @@ import VueGeolocation from 'vue-browser-geolocation';
 locale.use(lang);
 
 export default {
-  install(Vue) {
-    Vue.use(globalMixins);
-    Vue.use(VueLazyload, {
-      observer: true,
-      // optional
-      observerOptions: {
-        rootMargin: '0px',
-        threshold: 0.1
-      }
-    });
-    Vue.use(VueGeolocation);
-    Vue.use(VueLodash, { name: 'lodash' });
-  }
+    install(Vue) {
+        Vue.use(globalMixins);
+        Vue.use(VueLazyload, {
+            preLoad: 1.3,
+            error: 'dist/error.png',
+            loading: 'dist/loading.gif',
+            attempt: 1,
+            observer: true,
+            observerOptions: {
+                rootMargin: '0px',
+                threshold: 0.1
+            }
+        });
+        Vue.use(VueGeolocation);
+        Vue.use(VueLodash, {name: 'lodash'});
+    }
 };

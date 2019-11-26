@@ -1,7 +1,7 @@
 <template>
     <footer class="site-footer">
         <div class="container">
-            <p class="colophon">Copyright 2014 Company name. Designed by Themezy. All rights reserved</p>
+            <p class="colophon"></p>
         </div>
     </footer>
 </template>
