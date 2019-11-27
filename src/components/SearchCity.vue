@@ -32,8 +32,12 @@
         methods: {
             async search(e) {
                 if (e) e.preventDefault();
-                if (!this._.isEmpty(this.form.city))
-                    this.cities = await LocationService.searchCity(this.form.city);
+                if (!this._.isEmpty(this.form.city)) {
+                    let cities = await LocationService.searchCity(this.form.city);
+                    if (cities.length > 1 || !(cities.length === 1 && this.city && cities[0].locationId === this.city.locationId)) {
+                        this.cities = cities;
+                    }
+                }
             },
             selectCity(city) {
                 this.cities = undefined;
