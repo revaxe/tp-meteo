@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import {icon} from '@/filters'
 
 const keyApi = 'ffa95bb17d5cc1e050abbdc3295128d7';
 const urlApi = 'https://api.openweathermap.org/data/2.5';
@@ -10,12 +11,13 @@ export const WeatherService = {
         return fetch(`${urlApi}/weather?APPID=${keyApi}&q=${city},${countryCode}&units=metric`)
             .then(response => response.json())
             .then(data => {
+                console.log(icon(data.weather[0].icon.substring(0, 2) + 'd'));
                 return {
                     date: data.dt,
                     labelDay : Vue.moment.unix(data.dt).format('dddd'),
                     temp: data.main.temp,
                     weather: data.weather[0].main,
-                    iconId: data.weather[0].icon.substring(0, 2) + 'd',
+                    icon: icon(data.weather[0].icon.substring(0, 2) + 'd'),
                     wind: data.wind.speed,
                     humidity: data.main.humidity
                 }
@@ -39,7 +41,7 @@ export const WeatherService = {
                         labelDay : Vue.moment.unix(item.dt).format('dddd'),
                         temp: item.main.temp,
                         weather: item.weather[0].main,
-                        iconId: item.weather[0].icon.substring(0, 2) + 'd'
+                        icon: icon(item.weather[0].icon.substring(0, 2) + 'd')
                     })
                 });
                 return forecasts

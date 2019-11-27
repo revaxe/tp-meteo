@@ -10,7 +10,7 @@
             <div class="degree">
                 <div class="num">{{weather.temp | round}}<sup>o</sup>C</div>
                 <div class="forecast-icon">
-                    <img v-lazy="'http://openweathermap.org/img/wn/' + weather.iconId + '@2x.png'" alt="" width="96">
+                    <img :src="weather.icon" alt="" width="128">
                 </div>
             </div>
             <span><img src="images/icon-umberella.png" alt="">{{weather.humidity}}%</span>

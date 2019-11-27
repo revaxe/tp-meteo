@@ -5,7 +5,6 @@ import store from './store'
 import './filters'
 import WeatherUiKit from './plugins/weather-ui-kit';
 
-
 Vue.config.productionTip = false;
 
 Vue.use(WeatherUiKit);

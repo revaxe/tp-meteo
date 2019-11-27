@@ -5,7 +5,7 @@
         </div>
         <div class="forecast-content">
             <div class="forecast-icon">
-                <img v-lazy="'http://openweathermap.org/img/wn/' + forecast.iconId + '@2x.png'" alt="" width=72>
+                <img :src="forecast.icon" alt="" width=76>
             </div>
             <div class="degree">{{forecast.temp | round}}<sup>o</sup>C</div>
         </div>

@@ -1,6 +1,6 @@
 import '@/assets/scss/style.scss';
 import globalMixins from './globalMixins';
-import lang from 'element-ui/lib/locale/lang/en';
+import lang from 'element-ui/lib/locale/lang/fr';
 import locale from 'element-ui/lib/locale';
 import VueLazyload from 'vue-lazyload';
 import VueLodash from 'vue-lodash'
