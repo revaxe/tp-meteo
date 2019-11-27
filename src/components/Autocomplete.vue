@@ -1,10 +1,8 @@
 <template>
     <div class="autocomplete" data-position="below">
-        <slot name="input">
-            <input v-model="form.search" type="text" placeholder="Rechercher...">
-        </slot>
+        <slot name="input"></slot>
 
-        <ul class="autocomplete-result-list" role="listbox" id="autocomplete-result-list-1" v-if="propositions">
+        <ul class="autocomplete-result-list" role="listbox" id="autocomplete-result-list-1" v-if="propositions && propositions.length > 0">
             <li v-for="(item, index) in propositions" :key="index"
                 :id="'autocomplete-result-'+index" :data-result-index="index"
                 class="autocomplete-result"
@@ -22,13 +20,6 @@
             propositions: Array,
             select: Function,
             transformText: Function
-        },
-        data() {
-            return {
-                form: {
-                    search: ''
-                }
-            }
         }
     }
 </script>

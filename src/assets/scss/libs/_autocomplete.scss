@@ -9,9 +9,6 @@
 .autocomplete-result {
   cursor: default;
   padding: 12px 12px 12px 48px;
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zd…NsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCIvPjxwYXRoIGQ9Ik0yMSAyMWwtNC00Ii8+PC9zdmc+);
-  background-repeat: no-repeat;
-  background-position: 12px;
 
   &:hover, [aria-selected=true] {
     background-color: rgba(0, 154, 216, .1);

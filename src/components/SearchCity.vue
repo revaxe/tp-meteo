@@ -1,7 +1,7 @@
 <template>
-    <div class="hero" v-lazy:background-image="urlPhoto">
+    <div class="hero" v-lazy:background-image="photo">
         <div class="container">
-            <form @submit="rechercher" method="post" class="find-location">
+            <form @submit="search" method="post" class="find-location">
                 <Autocomplete :propositions="cities" :select="selectCity" :transformText="getLabelCity">
                     <input slot="input" v-model="form.city"
                            placeholder="Trouver votre ville..." type="text"
@@ -15,7 +15,6 @@
 
 <script>
     import {mapState} from 'vuex'
-    import {PhotoService} from '@/services'
     import {LocationService} from '@/services'
     import Autocomplete from '@/components/Autocomplete.vue'
 
@@ -26,47 +25,32 @@
                 form: {
                     city: ''
                 },
-                cities: undefined,
-                photos: undefined
+                cities: undefined
             }
         },
-        computed: {
-            urlPhoto: function () {
-                return this.photos && this.photos.length > 0
-                    ? this.photos[Math.floor(Math.random() * this.photos.length)].largeImageURL : 'images/banner.png'
-            },
-            ...mapState([
-                // attacher `this.count` à `store.state.count`
-                'city'
-            ])
-        },
+        computed: mapState(['city', 'photo']),
         methods: {
-            async rechercher(e) {
+            async search(e) {
                 if (e) e.preventDefault();
-                if (!this._.isEmpty(this.form.city)) {
+                if (!this._.isEmpty(this.form.city))
                     this.cities = await LocationService.searchCity(this.form.city);
-                }
             },
-            async selectCity(city) {
+            selectCity(city) {
                 this.cities = undefined;
                 this.$store.dispatch('updateCity', city);
-                this.photos = await PhotoService.getPhotosByCity(this.city.address.city);
             },
-            getLabelCity: function (city) {
-                return city ? `${city.address.city}, ${city.address.country}` : ''
-            }
+            getLabelCity: city => city ? `${city.address.city}, ${city.address.country}` : ''
         },
         watch: {
-            'form.city': function (val) {
-                if (val.length > 3 && !this._.isEqual(val, this.getLabelCity(this.city))) {
-                    this.rechercher()
-                } else if (val.length === 0) {
+            'form.city': function (newCityName) {
+                if (newCityName.length > 3 && !this._.isEqual(newCityName, this.getLabelCity(this.city)))
+                    this.search();
+                else if (newCityName.length === 0)
                     this.cities = undefined;
-                }
             },
-            'city': function (val) {
-                this.form.city = this.getLabelCity(val);
+            'city': function (newCity) {
+                this.form.city = this.getLabelCity(newCity);
             }
-        },
+        }
     }
 </script>

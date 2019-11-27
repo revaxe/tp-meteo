@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {PhotoService} from '@/services'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        city: undefined
+        city: undefined,
+        photo: 'images/banner.png'
     },
     mutations: {
         UPDATE_WEATHER(state) {
@@ -25,6 +27,10 @@ export default new Vuex.Store({
         },
         UPDATE_CITY(state, city) {
             state.city = city;
+        },
+        async UPDATE_PHOTO(state) {
+            let photos = await PhotoService.getPhotosByCity(state.city.address.city);
+            state.photo = photos && photos.length > 0 ? photos[Math.floor(Math.random() * photos.length)].largeImageURL : 'images/banner.png';
         }
     },
     actions: {
@@ -33,6 +39,7 @@ export default new Vuex.Store({
         },
         updateCity(context, city) {
             context.commit('UPDATE_CITY', city);
+            context.commit('UPDATE_PHOTO');
         }
     },
     modules: {}
