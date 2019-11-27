@@ -11,7 +11,6 @@ export const WeatherService = {
         return fetch(`${urlApi}/weather?APPID=${keyApi}&q=${city},${countryCode}&units=metric`)
             .then(response => response.json())
             .then(data => {
-                console.log(icon(data.weather[0].icon.substring(0, 2) + 'd'));
                 return {
                     date: data.dt,
                     labelDay : Vue.moment.unix(data.dt).format('dddd'),
