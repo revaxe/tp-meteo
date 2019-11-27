@@ -1,3 +1,3 @@
 export * from './PhotoService'
-export * from './MeteoService'
+export * from './WeatherService'
 export * from './LocationService'

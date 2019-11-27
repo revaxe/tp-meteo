@@ -1,32 +1,34 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {LocationService} from '@/services'
 import {PhotoService} from '@/services'
+import {WeatherService} from '@/services'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
         city: undefined,
-        photo: 'images/banner.png'
+        photo: 'images/banner.png',
+        weatherCurrent: undefined,
+        weatherForcasts: undefined
     },
     mutations: {
-        UPDATE_WEATHER(state) {
-            console.log(state)
-            /*service
-                .getWeather() // call the function from service.js that returns the data from API
-                .then(response => { // if the response was get
-                  state.weather = response.data.data[0]; // set weather obj in state to real weather obj
-                  state.dataIsRecived = true; // mark that data was recived
-                  console.log(response); // and log it
-                })
-                .catch(error => { // if there was an error
-                  console.log("There was an error:", error.response); // log it
-                  state.dataIsRecived = false; // and mark that data wasn't recived
-                });
-            */
+        async GET_POSITION(state, position) {
+            let proposition = await LocationService.getLocationFromPosition(position);
+            let result = await LocationService.searchCity(proposition.Address.City);
+            this.dispatch('updateCity', result[0]);
+        },
+        async UPDATE_WEATHER(state) {
+            WeatherService.getCurrent(state.city.address.city, state.city.countryCode)
+                .then(data => state.weatherCurrent = data);
+            WeatherService.getForcast(state.city.address.city, state.city.countryCode)
+                .then(data => state.weatherForcasts = data);
         },
         UPDATE_CITY(state, city) {
             state.city = city;
+            state.weatherCurrent = undefined;
+            state.weatherForcasts = undefined;
         },
         async UPDATE_PHOTO(state) {
             let photos = await PhotoService.getPhotosByCity(state.city.address.city);
@@ -34,12 +36,16 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        updatePosition(context, position) {
+            context.commit('GET_POSITION', position);
+        },
         updateWeather(context) {
             context.commit('UPDATE_WEATHER');
         },
         updateCity(context, city) {
             context.commit('UPDATE_CITY', city);
             context.commit('UPDATE_PHOTO');
+            context.commit('UPDATE_WEATHER')
         }
     },
     modules: {}

@@ -2,8 +2,10 @@
     <div class="forecast-table">
         <div class="container">
             <div class="forecast-container">
-                <ItemWeatherLarge :prevision="previsions[0]"/>
-                <ItemWeatherSmall v-for="(prevision, index) in previsions" :key="index" :prevision="prevision"/>
+                <ItemWeatherLarge v-if="weatherCurrent" :weather="weatherCurrent" :city="city"/>
+                <template v-if="weatherForcasts">
+                    <ItemWeatherSmall v-for="(forecast, index) in weatherForcasts" :key="index" :forecast="forecast"/>
+                </template>
             </div>
         </div>
     </div>
@@ -12,52 +14,12 @@
 <script>
     import ItemWeatherSmall from '@/components/ItemWeatherSmall.vue'
     import ItemWeatherLarge from '@/components/ItemWeatherLarge.vue'
+    import {mapState} from "vuex";
 
     export default {
         components: {
             ItemWeatherSmall, ItemWeatherLarge
         },
-        data() {
-            return {
-                previsions: []
-            }
-        },
-        created() {
-            this.previsions.push({
-                jour: 'Lundi',
-                temperature: 20,
-                moyenne: 15
-            });
-            this.previsions.push({
-                jour: 'Mardi',
-                temperature: 20,
-                moyenne: 15
-            });
-            this.previsions.push({
-                jour: 'Mercredi',
-                temperature: 20,
-                moyenne: 15
-            });
-            this.previsions.push({
-                jour: 'Jeudi',
-                temperature: 20,
-                moyenne: 15
-            });
-            this.previsions.push({
-                jour: 'Vendredi',
-                temperature: 20,
-                moyenne: 15
-            });
-            this.previsions.push({
-                jour: 'Samedi',
-                temperature: 20,
-                moyenne: 15
-            });
-            this.previsions.push({
-                jour: 'Dimanche',
-                temperature: 20,
-                moyenne: 15
-            });
-        }
+        computed: mapState(['weatherCurrent', 'weatherForcasts', 'city'])
     }
 </script>
