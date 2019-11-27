@@ -1,7 +1,7 @@
 <template>
     <div class="site-header">
         <div class="container">
-            <a href="index.html" class="branding">
+            <a href="/" class="branding">
                 <img src="images/logo.png" alt="" class="logo">
                 <div class="logo-type">
                     <h1 class="site-title">TP Meteo</h1>
@@ -12,7 +12,7 @@
             <div class="main-navigation">
                 <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
                 <ul class="menu">
-                    <li class="menu-item current-menu-item"><a href="index.html">Home</a></li>
+                    <li class="menu-item current-menu-item"><a href="/">Home</a></li>
                 </ul>
             </div>
 
