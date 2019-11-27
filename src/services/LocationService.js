@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 const appID = 'NvXnFM5rtMYYabvfuGnp';
 const appCode = 'sz2hO38kwyuakw8nienYiQ';
-const urlApiAutoComplete = 'http://autocomplete.geocoder.api.here.com/6.2';
+const urlApiAutoComplete = 'https://autocomplete.geocoder.api.here.com/6.2';
 const urlApiReverse = 'https://reverse.geocoder.api.here.com/6.2';
 
 // Doc API : https://developer.here.com/documentation/geocoder/dev_guide/topics/resources.html
