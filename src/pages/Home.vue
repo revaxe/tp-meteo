@@ -19,8 +19,8 @@
         },
         async created() {
             let position = await this.$getLocation();
-            this.$store.dispatch('updatePosition', position);
-
+            if (position)
+                this.$store.dispatch('updatePosition', position);
         }
     }
 </script>
