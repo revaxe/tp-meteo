@@ -1,5 +1,5 @@
 <template>
-    <div class="hero" v-lazy:background-image="photo">
+    <div class="photo" v-lazy:background-image="photo">
         <div class="container">
             <form @submit="search" method="post" class="find-location">
                 <Autocomplete :propositions="cities" :select="selectCity" :transformText="getLabelCity">

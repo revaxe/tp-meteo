@@ -8,16 +8,6 @@
                     <small class="site-description">Découverte de VueJS</small>
                 </div>
             </a>
-
-            <div class="main-navigation">
-                <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
-                <ul class="menu">
-<!--                    <li class="menu-item current-menu-item"><a href="/">Home</a></li>-->
-                </ul>
-            </div>
-
-            <div class="mobile-navigation"></div>
-
         </div>
     </div>
 </template>
