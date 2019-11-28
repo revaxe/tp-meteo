@@ -3,7 +3,7 @@
         <div class="forecast-header">
             <div class="day">{{forecast.labelDay | capitalize}}</div>
         </div>
-        <div class="forecast-content">
+        <div class="forecast-content forecast-content-small">
             <div class="forecast-icon">
                 <img :src="forecast.icon" alt="" width=76>
             </div>

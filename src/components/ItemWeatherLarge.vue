@@ -5,7 +5,7 @@
             <div class="date">{{weather.date | moment("DD MMMM")}}</div>
         </div>
         <!-- .forecast-header -->
-        <div class="forecast-content">
+        <div class="forecast-content forecast-content-large">
             <div class="location">{{city.address.city}}</div>
             <div class="degree">
                 <div class="num">{{weather.temp | round}}<sup>o</sup>C</div>

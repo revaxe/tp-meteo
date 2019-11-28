@@ -156,8 +156,15 @@
       height: 50px;
     }
 
-    .forecast-content {
+    .forecast-content-large {
       padding: 50px 20px 10px;
+    }
+    .forecast-content-small {
+      padding: 50px 0 10px;
+    }
+
+    .forecast-content {
+
       text-align: center;
 
       .forecast-icon {
