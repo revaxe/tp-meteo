@@ -67,6 +67,10 @@
 
 }
 
+.forecast-container > div {
+  display: contents;
+}
+
 .forecast-container {
   width: 100%;
   background-color: rgba(50, 53, 68, .9);

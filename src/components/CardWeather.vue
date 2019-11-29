@@ -2,10 +2,15 @@
     <div class="forecast-table">
         <div class="container">
             <div class="forecast-container">
-                <ItemWeatherLarge v-if="weatherCurrent" :weather="weatherCurrent" :city="city"/>
-                <template v-if="weatherForcasts">
-                    <ItemWeatherSmall v-for="(forecast, index) in weatherForcasts" :key="index" :forecast="forecast"/>
-                </template>
+                <transition name="fade">
+                    <ItemWeatherLarge v-if="weatherCurrent" :weather="weatherCurrent" :city="city"/>
+                </transition>
+                <transition-group name="fade" tag="div">
+                    <template v-if="weatherForcasts">
+                        <ItemWeatherSmall v-for="(forecast, index) in weatherForcasts" :key="index" :forecast="forecast"/>
+                    </template>
+                </transition-group>
+
             </div>
         </div>
     </div>

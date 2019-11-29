@@ -1,7 +1,7 @@
 <template>
     <div class="photo" v-lazy:background-image="photo">
         <div class="container">
-            <form @submit="search" method="post" class="find-location">
+            <form @submit="searchCity" method="post" class="find-location">
                 <Autocomplete :propositions="cities" :select="selectCity" :transformText="getLabelCity">
                     <input slot="input" v-model="form.city"
                            placeholder="Trouver votre ville..." type="text"
@@ -25,18 +25,18 @@
                 form: {
                     city: ''
                 },
-                cities: undefined
+                cities: undefined,
+                debouncedSearchCity: undefined
             }
         },
         computed: mapState(['city', 'photo']),
         methods: {
-            async search(e) {
+            async searchCity(e) {
                 if (e) e.preventDefault();
                 if (!this._.isEmpty(this.form.city)) {
                     let cities = await LocationService.searchCity(this.form.city);
-                    if (cities.length > 1 || !(cities.length === 1 && this.city && cities[0].locationId === this.city.locationId)) {
+                    if (cities.length > 1 || !(cities.length === 1 && this.city && cities[0].locationId === this.city.locationId))
                         this.cities = cities;
-                    }
                 }
             },
             selectCity(city) {
@@ -47,14 +47,19 @@
         },
         watch: {
             'form.city': function (newCityName) {
-                if (newCityName.length > 3 && !this._.isEqual(newCityName, this.getLabelCity(this.city)))
-                    this.search();
+                if (newCityName && !this._.isEqual(newCityName, this.getLabelCity(this.city)))
+                    this.debouncedSearchCity();
                 else if (newCityName.length === 0)
                     this.cities = undefined;
             },
             'city': function (newCity) {
                 this.form.city = this.getLabelCity(newCity);
             }
+        },
+        created: function () {
+            // _.debounce est une fonction fournie par lodash pour limiter la fréquence
+            // d'exécution d'une opération particulièrement couteuse.
+            this.debouncedSearchCity = this._.debounce(this.searchCity, 400)
         }
     }
 </script>

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Header from '../components/layout/Header.vue'
-import Home from '../pages/Home.vue'
+import Header from './components/layout/Header.vue'
+import Home from './pages/Home.vue'
 
 
 Vue.use(VueRouter);
