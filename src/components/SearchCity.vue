@@ -47,10 +47,14 @@
         },
         watch: {
             'form.city': function (newCityName) {
-                if (newCityName && !this._.isEqual(newCityName, this.getLabelCity(this.city)))
+                if (newCityName && !this._.isEqual(newCityName, this.getLabelCity(this.city))) {
+                    this.$store.dispatch('clearCity');
                     this.debouncedSearchCity();
-                else if (newCityName.length === 0)
+                }
+                else if (newCityName.length === 0) {
                     this.cities = undefined;
+                    this.$store.dispatch('clearCity');
+                }
             },
             'city': function (newCity) {
                 this.form.city = this.getLabelCity(newCity);

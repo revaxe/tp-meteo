@@ -53,6 +53,11 @@ export default new Vuex.Store({
                 weatherCurrent: results[0],
                 weatherForcasts: results[1]
             });
+        },
+        clearCity(context) {
+            context.commit('UPDATE_CITY', undefined);
+            context.commit('UPDATE_WEATHER', {weatherCurrent: undefined, weatherForcasts: undefined});
+            context.commit('UPDATE_PHOTO', undefined);
         }
     },
     modules: {}
