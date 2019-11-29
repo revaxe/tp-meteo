@@ -1,19 +1,14 @@
 <template>
-    <div class="forecast-table">
-        <div class="container">
-            <div class="forecast-container">
-                <transition name="fade">
+    <transition name="slide-fade">
+        <div class="forecast-table" v-if="weatherCurrent && weatherForcasts">
+            <div class="container">
+                <div class="forecast-container">
                     <ItemWeatherLarge v-if="weatherCurrent" :weather="weatherCurrent" :city="city"/>
-                </transition>
-                <transition-group name="fade" tag="div">
-                    <template v-if="weatherForcasts">
-                        <ItemWeatherSmall v-for="(forecast, index) in weatherForcasts" :key="index" :forecast="forecast"/>
-                    </template>
-                </transition-group>
-
+                    <ItemWeatherSmall v-for="(forecast, index) in weatherForcasts" :key="index" :forecast="forecast"/>
+                </div>
             </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>

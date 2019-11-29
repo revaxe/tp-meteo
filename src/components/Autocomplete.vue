@@ -2,7 +2,7 @@
     <div class="autocomplete" data-position="below">
         <slot name="input"></slot>
 
-        <transition name="fade">
+        <transition name="slide-fade">
             <ul class="autocomplete-result-list" role="listbox" id="autocomplete-result-list-1"
                 v-if="propositions && propositions.length > 0">
                 <li v-for="(item, index) in propositions" :key="index"
