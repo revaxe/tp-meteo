@@ -1,7 +1,7 @@
 <template>
     <div class="today forecast">
         <div class="forecast-header">
-            <div class="day">{{weather.labelDay}}</div>
+            <div class="day">{{weather.labelDay | capitalize}}</div>
             <div class="date">{{weather.date | moment("DD MMMM")}}</div>
         </div>
         <!-- .forecast-header -->
