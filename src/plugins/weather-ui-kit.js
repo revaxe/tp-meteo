@@ -5,9 +5,10 @@ import locale from 'element-ui/lib/locale';
 import VueLazyload from 'vue-lazyload';
 import VueLodash from 'vue-lodash'
 import VueGeolocation from 'vue-browser-geolocation';
-const moment = require('moment');
-require('moment/locale/fr');
+import VueMoment from 'vue-moment';
+import moment from 'moment';
 
+moment.locale('fr');
 locale.use(lang);
 
 export default {
@@ -26,7 +27,7 @@ export default {
         });
         Vue.use(VueGeolocation);
         Vue.use(VueLodash, {name: 'lodash'});
-        Vue.use(require('vue-moment'), {
+        Vue.use(VueMoment, {
             moment
         });
     }
