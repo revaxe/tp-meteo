@@ -1,5 +1,10 @@
 # tp-meteo
 
+## Objectifs
+###Décomposer la page home
+- Creer un nouveau composant .vue intégrant le champ de recherche de la ville
+
+
 ## Project setup
 ```
 npm install
