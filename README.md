@@ -1,5 +1,13 @@
 # tp-meteo
 
+
+## Objectifs
+###Realiser un composant d'autocompletion sur le champ de recherche de la ville
+- Creer un nouveau composant .vue
+- Utiliser les slot
+- Créer et utiliser un évenement personnalisé
+
+
 ## Project setup
 ```
 npm install
