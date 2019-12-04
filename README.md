@@ -1,11 +1,7 @@
 # tp-meteo
 
 
-## Objectifs
-###Faire la recherche lorsqu'on tape la ville à l'aide des watchers
-- Utiliser les watchers + la methode debounce de lodash
-###Mettre le focus sur le champ lorsqu'on arrive sur la page
-- Creer une directive
+## Suite du tp -> tp2.1
 
 
 ## Project setup

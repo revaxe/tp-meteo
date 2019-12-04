@@ -6,7 +6,8 @@
                               @select="selectCity" @cancel="cancelSelection">
                     <template v-slot:input>
                         <input v-model="form.city"
-                               placeholder="Trouver votre ville..." type="text">
+                           placeholder="Trouver votre ville..." type="text" v-focus
+                           :class="{'error': form.city === '' && city !== undefined}">
                     </template>
                 </Autocomplete>
                 <input type="submit" value="Rechercher" :disabled="isDisabled">
@@ -27,7 +28,8 @@
                 form: {
                     city: ''
                 },
-                cities: undefined
+                cities: undefined,
+                debouncedSearchCity: undefined
             }
         },
         computed: {
@@ -54,9 +56,30 @@
             }
         },
         watch: {
+            'form.city': function (newCityName) {
+                if (newCityName && !this._.isEqual(newCityName, this.getLabelCity(this.city))) {
+                    this.$store.dispatch('clearCity');
+                    this.debouncedSearchCity();
+                } else if (newCityName.length === 0) {
+                    this.cities = undefined;
+                    this.$store.dispatch('clearCity');
+                }
+            },
             'city': function (newCity) {
                 if (newCity)
                     this.form.city = this.getLabelCity(newCity);
+            }
+        },
+        created: function () {
+            // _.debounce est une fonction fournie par lodash pour limiter la fréquence
+            // d'exécution d'une opération particulièrement couteuse.
+            this.debouncedSearchCity = this._.debounce(this.search, 400)
+        },
+        directives: {
+            focus: {
+                inserted: function (el) {
+                    el.focus()
+                }
             }
         }
     }
