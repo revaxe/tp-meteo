@@ -64,7 +64,8 @@
                         this.selectionIndex = null
                 }
             },
-            selectSelection() {
+            selectSelection(index) {
+                if (index !== undefined) this.selectionIndex = index;
                 if (this.selectionIndex !== null && this.selectionIndex < this.propositions.length) {
                     this.select(this.propositions[this.selectionIndex]);
                     this.selectionIndex = null;
