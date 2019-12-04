@@ -2,10 +2,10 @@
 
 
 ## Objectifs
-###Faire la recherche lorsqu'on tape la ville à l'aide des watchers
-- Utiliser les watchers + la methode debounce de lodash
-###Mettre le focus sur le champ lorsqu'on arrive sur la page
-- Creer une directive
+###Création et utilisation d'un store
+- Utiliser les vuex pour enregistrer la ville sélectionné
+- Créer les mutations & les actions
+- Utiliser mapStruct de vuex
 
 
 ## Project setup
