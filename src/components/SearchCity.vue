@@ -1,8 +1,8 @@
 <template>
     <div class="photo" v-lazy:background-image="photo">
         <div class="container">
-            <form @submit.prevent="searchCity" method="post" class="find-location">
-                <Autocomplete :propositions="cities" :transformText="getLabelCity" @select="selectCity">
+            <form @submit.stop="searchCity" method="post" class="find-location">
+                <Autocomplete :propositions="cities" :transformText="getLabelCity" @select="selectCity" @cancel="cancelSelection">
                     <template v-slot:input>
                     <input v-model="form.city"
                            placeholder="Trouver votre ville..." type="text" v-focus
@@ -50,7 +50,10 @@
                 this.cities = undefined;
                 this.$store.dispatch('updateCity', city);
             },
-            getLabelCity: city => city ? `${city.address.city}, ${city.address.country}` : ''
+            getLabelCity: city => city ? `${city.address.city}, ${city.address.country}` : '',
+            cancelSelection() {
+                this.cities = undefined
+            }
         },
         watch: {
             'form.city': function (newCityName) {
