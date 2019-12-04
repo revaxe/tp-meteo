@@ -30,8 +30,7 @@
         },
         methods: {
             search() {
-                console.log('search');
-                console.log(this.form.city)
+                console.log(`search ${this.form.city}`);
             }
         }
     }
