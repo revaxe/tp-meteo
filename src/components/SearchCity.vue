@@ -1,13 +1,15 @@
 <template>
     <div class="photo" v-lazy:background-image="photo">
         <div class="container">
-            <form @submit="searchCity" method="post" class="find-location">
-                <Autocomplete :propositions="cities" :select="selectCity" :transformText="getLabelCity">
-                    <input slot="input" v-model="form.city"
+            <form @submit.prevent="searchCity" method="post" class="find-location">
+                <Autocomplete :propositions="cities" :transformText="getLabelCity" @select="selectCity">
+                    <template v-slot:input>
+                    <input v-model="form.city"
                            placeholder="Trouver votre ville..." type="text" v-focus
                            :class="{'error': form.city === '' && city !== undefined}">
+                    </template>
                 </Autocomplete>
-                <input type="submit" value="Rechercher">
+                <input type="submit" value="Rechercher" :disabled="isDisabled">
             </form>
         </div>
     </div>
@@ -29,7 +31,12 @@
                 debouncedSearchCity: undefined
             }
         },
-        computed: mapState(['city', 'photo']),
+        computed: {
+            ...mapState(['city', 'photo']),
+            isDisabled: function () {
+                return this.form.city === undefined || this.form.city === ''
+            }
+        },
         methods: {
             async searchCity(e) {
                 if (e) e.preventDefault();

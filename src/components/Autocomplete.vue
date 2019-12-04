@@ -24,7 +24,7 @@
             select: {
                 type: Function,
                 default: function (item) {
-                    this.$emit('select-autocomplete', item)
+                    this.$emit('select', item)
                 }
             },
             transformText: {
