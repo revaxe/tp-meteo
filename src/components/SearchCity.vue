@@ -1,7 +1,7 @@
 <template>
     <div class="photo" style="background-image: url('images/banner.png')">
         <div class="container">
-            <form @:submit.prevent="search" method="post" class="find-location" id="recherche">
+            <form v-on:submit.prevent="search" method="post" class="find-location" id="recherche">
                 <input v-model="form.city" placeholder="Trouver votre ville..." type="text">
                 <input type="submit" value="Rechercher" :disabled="isDisabled">
             </form>
@@ -27,7 +27,7 @@
             }
         },
         methods: {
-            async searchCity() {
+            async search() {
                 console.log(`search ${this.form.city}`);
                 if (!this._.isEmpty(this.form.city) && !this._.isEqual(this.form.city, this.getLabelCity(this.city))) {
                     let cities = await LocationService.searchCity(this.form.city);
