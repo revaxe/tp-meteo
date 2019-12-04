@@ -1,5 +1,12 @@
 # tp-meteo
 
+
+## Objectifs
+###Rechercher la ville
+- Faire une recherche de la ville avec le service LocationService.search
+- Renseigner le libellé de la ville trouvé dans le champ input
+
+
 ## Project setup
 ```
 npm install
