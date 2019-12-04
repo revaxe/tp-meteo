@@ -2,10 +2,10 @@
 
 
 ## Objectifs
-###Realiser un composant d'autocompletion sur le champ de recherche de la ville
-- Creer un nouveau composant .vue
-- Utiliser les slot
-- Créer et utiliser un évenement personnalisé
+###Création et utilisation d'un store
+- Utiliser les vuex pour enregistrer la ville sélectionné
+- Créer les mutations & les actions
+- Utiliser mapStruct de vuex
 
 
 ## Project setup
