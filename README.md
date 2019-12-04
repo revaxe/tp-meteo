@@ -12,6 +12,8 @@
 ###Bonus : Ajouter des transition
 - Lors de l'affichage de l'autocompletion
 - Lors de l'affichage de la meteo
+###Bonus : Initialiser la ville en fonction de la position du client
+- Utiliser le service LocationService.getLocationFromPosition avec this.$getLocation()
 
 
 ## Project setup
