@@ -1,5 +1,12 @@
 # tp-meteo
 
+## Objectifs
+###Ajouter l'action de recherche de la ville
+- Ajouter le model
+- Afficher 'search ${ville}' lors de la recherche
+- Désactiver le bouton de recherche lorsque le champ est vide
+
+
 ## Project setup
 ```
 npm install
