@@ -10,8 +10,6 @@
 </template>
 
 <script>
-    import {LocationService} from '@/services'
-
     export default {
         data() {
             return {
@@ -28,16 +26,8 @@
         },
         methods: {
             async search() {
-                if (!this._.isEmpty(this.form.city) && !this._.isEqual(this.form.city, this.getLabelCity(this.city))) {
-                    let cities = await LocationService.searchCity(this.form.city);
-                    if (cities.length > 1 || !(cities.length === 1 && this.city && cities[0].locationId === this.city.locationId)) {
-                        this.city = cities[0];
-                        console.log(`search `, this.city);
-                        this.form.city = this.getLabelCity(this.city)
-                    }
-                }
-            },
-            getLabelCity: city => city ? `${city.address.city}, ${city.address.country}` : ''
+                console.log(`search ${this.form.city}`);
+            }
         }
     }
 </script>
