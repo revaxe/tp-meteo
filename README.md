@@ -1,7 +1,10 @@
 # tp-meteo
 
 
-## Suite du tp -> tp2.1
+## Objectifs
+###Afficher la météo en fonction de la ville sélectionné
+- Créer un composant WeatherCard
+- Créer un composant WeatherCardSmall
 
 
 ## Project setup
