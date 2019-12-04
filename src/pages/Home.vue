@@ -1,26 +1,34 @@
 <template>
     <div class="home">
 
-        <SearchCity/>
+        <div class="photo" style="background-image: 'images/banner.png'">
+            <div class="container">
+                <form method="post" class="find-location">
+                    <input v-model="form.city" placeholder="Trouver votre ville..." type="text">
+                    <input type="submit" value="Rechercher">
+                </form>
+            </div>
+        </div>
 
-        <CardWeather/>
+        <div class="forecast-table">
+            <div class="container">
+                <div class="forecast-container">
+                </div>
+            </div>
+        </div>
 
     </div>
 </template>
 
 <script>
-    import SearchCity from '@/components/SearchCity.vue'
-    import CardWeather from '@/components/CardWeather.vue'
-
     export default {
         name: 'home',
-        components: {
-            SearchCity, CardWeather
-        },
-        async created() {
-            let position = await this.$getLocation();
-            if (position)
-                this.$store.dispatch('updatePosition', position);
+        data: function () {
+            return {
+                form: {
+                    city: ''
+                }
+            }
         }
     }
 </script>
