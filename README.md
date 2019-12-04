@@ -3,8 +3,15 @@
 
 ## Objectifs
 ###Afficher la météo en fonction de la ville sélectionné
-- Créer un composant WeatherCard
-- Créer un composant WeatherCardSmall
+- Utiliser le store pour mettre à jour la méteo lors de la sélection de la ville
+- Boucler sur ItemWeatherSmall avec v-for
+- Utiliser les filtres pour :
+    - afficher la date
+    - afficher le jour de la semaine (capitalize)
+    - arrondir la temperature
+###Bonus : Ajouter des transition
+- Lors de l'affichage de l'autocompletion
+- Lors de l'affichage de la meteo
 
 
 ## Project setup
