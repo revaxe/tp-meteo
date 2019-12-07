@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import router from '../router'
 import {LocationService} from '@/services'
 import {PhotoService} from '@/services'
 import {WeatherService} from '@/services'
@@ -30,8 +31,12 @@ export default new Vuex.Store({
     actions: {
         async updatePosition(context, position) {
             let proposition = await LocationService.getLocationFromPosition(position);
-            let result = await LocationService.searchCity(proposition.Address.City);
-            context.dispatch('updateCity', result[0]);
+            let cities = await LocationService.searchCity(proposition.Address.City);
+            await router.push({
+                name: 'home',
+                query: {city: `${cities[0].address.city},${cities[0].address.country}`}
+            });
+            context.dispatch('updateCity', cities[0]);
         },
         async updateCity(context, city) {
             // update city

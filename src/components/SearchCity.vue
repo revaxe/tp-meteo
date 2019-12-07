@@ -2,11 +2,12 @@
     <div class="photo" v-lazy:background-image="photo">
         <div class="container">
             <form @submit.stop="searchCity" method="post" class="find-location">
-                <Autocomplete :propositions="cities" :transformText="getLabelCity" @select="selectCity" @cancel="cancelSelection">
+                <Autocomplete :propositions="cities" :transformText="getLabelCity" @select="selectCity"
+                              @cancel="cancelSelection">
                     <template v-slot:input>
-                    <input v-model="form.city"
-                           placeholder="Trouver votre ville..." type="text" v-focus
-                           :class="{'error': form.city === '' && city !== undefined}">
+                        <input v-model="form.city"
+                               placeholder="Trouver votre ville..." type="text" v-focus
+                               :class="{'error': form.city === '' && city !== undefined}">
                     </template>
                 </Autocomplete>
                 <input type="submit" value="Rechercher" :disabled="isDisabled">
@@ -49,6 +50,7 @@
             selectCity(city) {
                 this.cities = undefined;
                 this.$store.dispatch('updateCity', city);
+                this.$router.push({name: 'home', query: {city: `${city.address.city},${city.address.country}`}});
             },
             getLabelCity: city => city ? `${city.address.city}, ${city.address.country}` : '',
             cancelSelection() {

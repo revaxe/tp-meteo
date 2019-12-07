@@ -11,6 +11,7 @@
 <script>
     import SearchCity from '@/components/SearchCity.vue'
     import CardWeather from '@/components/CardWeather.vue'
+    import {LocationService} from '@/services'
 
     export default {
         name: 'home',
@@ -18,9 +19,16 @@
             SearchCity, CardWeather
         },
         async created() {
-            let position = await this.$getLocation();
-            if (position)
-                this.$store.dispatch('updatePosition', position);
+            let city = this.$route.query.city;
+            if (city) {
+                let cities = await LocationService.searchCity(city);
+                if (cities.length > 0)
+                    await this.$store.dispatch('updateCity', cities[0]);
+            } else {
+                let position = await this.$getLocation();
+                if (position)
+                    await this.$store.dispatch('updatePosition', position);
+            }
         }
     }
 </script>
