@@ -2,7 +2,17 @@
     <div class="photo" style="background-image: url('images/banner.png')">
         <div class="container">
             <form v-on:submit.prevent="search" method="post" class="find-location" id="recherche">
-                <input v-model="form.city" placeholder="Trouver votre ville..." type="text">
+                <div data-position="below" class="autocomplete">
+                    <input v-model="form.city" placeholder="Trouver votre ville..." type="text">
+                    <ul role="listbox" id="autocomplete-result-list-1" class="autocomplete-result-list">
+                        <li id="autocomplete-result-0" data-result-index="0" role="option" class="autocomplete-result"> Bruges,
+                            Belgique
+                        </li>
+                        <li id="autocomplete-result-1" data-result-index="1" role="option" class="autocomplete-result"> Brugg,
+                            Suisse
+                        </li>
+                    </ul>
+                </div>
                 <input type="submit" value="Rechercher" :disabled="isDisabled">
             </form>
         </div>
