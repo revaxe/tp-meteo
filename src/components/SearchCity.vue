@@ -1,5 +1,5 @@
 <template>
-    <div class="photo" v-lazy:background-image="photo">
+    <div class="photo" style="background-image: url('images/banner.png')">
         <div class="container">
             <form @submit.prevent="search" method="post" class="find-location">
                 <Autocomplete :propositions="cities" :transformText="getLabelCity"
@@ -17,7 +17,6 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
     import {LocationService} from '@/services'
     import Autocomplete from '@/components/Autocomplete.vue'
 
@@ -28,12 +27,12 @@
                 form: {
                     city: ''
                 },
+                city: undefined,
                 cities: undefined,
                 debouncedSearchCity: undefined
             }
         },
         computed: {
-            ...mapState(['city', 'photo']),
             isDisabled: function () {
                 return this.form.city === undefined || this.form.city === ''
             }
@@ -42,13 +41,17 @@
             async search() {
                 if (!this._.isEmpty(this.form.city) && !this._.isEqual(this.form.city, this.getLabelCity(this.city))) {
                     let cities = await LocationService.searchCity(this.form.city);
-                    if (cities.length > 1 || !(cities.length === 1 && this.city && cities[0].locationId === this.city.locationId))
+                    if (cities.length > 1 || !(cities.length === 1 && this.city && cities[0].locationId === this.city.locationId)) {
                         this.cities = cities;
+                        console.log(`search `, this.form.city);
+                    }
                 }
             },
             selectCity(city) {
                 this.cities = undefined;
-                this.$store.dispatch('updateCity', city);
+                this.city = city;
+                this.form.city = this.getLabelCity(this.city);
+                console.log(`select city `, this.form.city);
             },
             getLabelCity: city => city ? `${city.address.city}, ${city.address.country}` : '',
             cancelSelection() {
@@ -58,11 +61,9 @@
         watch: {
             'form.city': function (newCityName) {
                 if (newCityName && !this._.isEqual(newCityName, this.getLabelCity(this.city))) {
-                    this.$store.dispatch('clearCity');
                     this.debouncedSearchCity();
                 } else if (newCityName.length === 0) {
                     this.cities = undefined;
-                    this.$store.dispatch('clearCity');
                 }
             },
             'city': function (newCity) {
