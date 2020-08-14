@@ -1,9 +1,9 @@
 <template>
     <div class="photo" v-lazy:background-image="photo">
         <div class="container">
-            <form @submit.stop="searchCity" method="post" class="find-location">
-                <Autocomplete :propositions="cities" :transformText="getLabelCity" @select="selectCity"
-                              @cancel="cancelSelection">
+            <form @submit.prevent="search" method="post" class="find-location">
+                <Autocomplete :propositions="cities" :transformText="getLabelCity"
+                              @select="selectCity" @cancel="cancelSelection">
                     <template v-slot:input>
                         <input v-model="form.city"
                                placeholder="Trouver votre ville..." type="text" v-focus
@@ -39,8 +39,7 @@
             }
         },
         methods: {
-            async searchCity(e) {
-                if (e) e.preventDefault();
+            async search() {
                 if (!this._.isEmpty(this.form.city) && !this._.isEqual(this.form.city, this.getLabelCity(this.city))) {
                     let cities = await LocationService.searchCity(this.form.city);
                     if (cities.length > 1 || !(cities.length === 1 && this.city && cities[0].locationId === this.city.locationId))
@@ -75,7 +74,7 @@
         created: function () {
             // _.debounce est une fonction fournie par lodash pour limiter la fréquence
             // d'exécution d'une opération particulièrement couteuse.
-            this.debouncedSearchCity = this._.debounce(this.searchCity, 400)
+            this.debouncedSearchCity = this._.debounce(this.search, 400)
         },
         directives: {
             focus: {
