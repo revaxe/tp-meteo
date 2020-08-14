@@ -7,16 +7,18 @@
     >
         <slot name="input"></slot>
 
-        <ul class="autocomplete-result-list" role="listbox" id="autocomplete-result-list-1"
-            v-if="propositions && propositions.length > 0">
-            <li v-for="(item, index) in propositions" :key="index"
-                :id="'autocomplete-result-'+index" :data-result-index="index"
-                class="autocomplete-result" :aria-selected="index === selectionIndex"
-                role="option" @click="selectSelection(index)"
-            >
-                {{transformText(item)}}
-            </li>
-        </ul>
+        <transition name="slide-fade">
+            <ul class="autocomplete-result-list" role="listbox" id="autocomplete-result-list-1"
+                v-if="propositions && propositions.length > 0">
+                <li v-for="(item, index) in propositions" :key="index"
+                    :id="'autocomplete-result-'+index" :data-result-index="index"
+                    class="autocomplete-result" :aria-selected="index === selectionIndex"
+                    role="option" @click="selectSelection(index)"
+                >
+                    {{transformText(item)}}
+                </li>
+            </ul>
+        </transition>
     </div>
 </template>
 

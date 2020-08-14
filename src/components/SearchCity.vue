@@ -6,8 +6,8 @@
                               @select="selectCity" @cancel="cancelSelection">
                     <template v-slot:input>
                         <input v-model="form.city"
-                           placeholder="Trouver votre ville..." type="text" v-focus
-                           :class="{'error': form.city === '' && city !== undefined}">
+                               placeholder="Trouver votre ville..." type="text" v-focus
+                               :class="{'error': form.city === '' && city !== undefined}">
                     </template>
                 </Autocomplete>
                 <input type="submit" value="Rechercher" :disabled="isDisabled">

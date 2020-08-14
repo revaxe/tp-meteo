@@ -2,18 +2,10 @@
 
 
 ## Objectifs
-###Afficher la météo en fonction de la ville sélectionné
-- Utiliser le store pour mettre à jour la méteo lors de la sélection de la ville
-- Boucler sur ItemWeatherSmall avec v-for
-- Utiliser les filtres pour :
-    - afficher la date
-    - afficher le jour de la semaine (capitalize)
-    - arrondir la temperature
-###Bonus : Ajouter des transition
-- Lors de l'affichage de l'autocompletion
-- Lors de l'affichage de la meteo
-###Bonus : Initialiser la ville en fonction de la position du client
-- Utiliser le service LocationService.getLocationFromPosition avec this.$getLocation()
+###Renseigner la ville dans l'url lors de sa sélection
+- Utiliser le router pour renseigner la ville sélectionnée dans l'url
+- Utiliser le router pour récupérer la ville dans l'url et mettre à jour le store
+
 
 
 ## Project setup
