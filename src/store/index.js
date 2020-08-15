@@ -34,7 +34,7 @@ export default new Vuex.Store({
             let cities = await LocationService.searchCity(proposition.Address.City);
             await router.push({
                 name: 'home',
-                query: {city: `${cities[0].address.city},${cities[0].address.country}`}
+                params: {city: `${cities[0].address.city},${cities[0].address.country}`}
             });
             context.dispatch('updateCity', cities[0]);
         },

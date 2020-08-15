@@ -5,6 +5,8 @@
 
         <CardWeather/>
 
+        <router-view></router-view>
+
     </div>
 </template>
 
@@ -19,7 +21,7 @@
             SearchCity, CardWeather
         },
         async created() {
-            let city = this.$route.query.city;
+            let city = this.$route.params.city;
             if (city) {
                 let cities = await LocationService.searchCity(city);
                 if (cities.length > 0)

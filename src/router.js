@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Header from './components/layout/Header.vue'
+import HourlyForcast from './components/HourlyForcast.vue'
 import Home from './pages/Home.vue'
 
 
@@ -8,9 +9,16 @@ Vue.use(VueRouter);
 
 const routes = [
     {
-        path: '/',
+        path: '/:city?',
         name: 'home',
-        components: {default: Home, header: Header}
+        components: {default: Home, header: Header},
+        children: [
+            {
+                name: 'hourly',
+                path: ':day/hourly',
+                component: HourlyForcast
+            }
+        ]
     }
 ];
 
