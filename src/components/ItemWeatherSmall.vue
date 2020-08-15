@@ -1,19 +1,19 @@
 <template>
-    <div class="forecast">
+  <router-link
+      :to="{name: 'hourly', params: {city: cityName, day: forecast.labelDay}}"
+      v-slot="{ href, route, navigate, isActive }">
+    <div class="forecast link" :class="{'active': isActive}" @click="navigate">
         <div class="forecast-header">
             <div class="day">{{forecast.labelDay | capitalize}}</div>
         </div>
-        <router-link
-            :to="{name: 'hourly', params: {city: cityName, day: forecast.labelDay}}"
-            v-slot="{ href, route, navigate, isActive }">
-            <div class="forecast-content forecast-content-small link" :active="isActive" @click="navigate">
-                <div class="forecast-icon">
-                    <img :src="forecast.icon" alt="" width=76>
-                </div>
-                <div class="degree">{{forecast.temp | round}}<sup>o</sup>C</div>
+        <div class="forecast-content forecast-content-small">
+            <div class="forecast-icon">
+                <img :src="forecast.icon" alt="" width=76>
             </div>
-        </router-link>
+            <div class="degree">{{forecast.temp | round}}<sup>o</sup>C</div>
+        </div>
     </div>
+  </router-link>
 </template>
 
 <script>

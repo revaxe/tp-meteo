@@ -15,7 +15,7 @@ const routes = [
         children: [
             {
                 name: 'hourly',
-                path: ':day/hourly',
+                path: ':day/heure-par-heure',
                 component: HourlyForcast
             }
         ]
