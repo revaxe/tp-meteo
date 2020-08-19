@@ -195,3 +195,31 @@
     }
   }
 }
+
+.arrow-feature {
+  list-style: none inside none;
+  vertical-align: middle;
+
+  li {
+    width: 100%;
+    background-color: rgba(60, 108, 127, 0.7);
+    display: table;
+    table-layout: fixed;
+    overflow: hidden;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
+    color: white;
+    vertical-align: middle;
+
+    span {
+      display: block;
+    }
+
+    .num {
+      @include em(29);
+      font-weight: 700;
+    }
+  }
+
+}

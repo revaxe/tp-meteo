@@ -28,8 +28,6 @@ export default {
         });
         Vue.use(VueGeolocation);
         Vue.use(VueLodash, {lodash});
-        Vue.use(VueMoment, {
-            moment
-        });
+        Vue.use(VueMoment, {moment});
     }
 };
