@@ -24,8 +24,8 @@
             <span>{{ forcast.wind | round }} km/h</span>
           </div>
           <div class="col-sm-2">
-            <strong>0 Faible</strong>
-            <span>FPS: Non</span>
+            <strong>{{forcast.humidity}}% d'humidité</strong>
+            <span>{{forcast.pressure}} hPa</span>
           </div>
         </li>
       </transition-group>
@@ -57,7 +57,9 @@ export default {
               icon: icon(data.weather[0].icon.substring(0, 2) + 'd'),
               wind: data.wind.speed,
               windDegree: data.wind.deg,
-              humidity: data.main.humidity
+              humidity: data.main.humidity,
+              pressure: data.main.pressure,
+
             }
           })
     }

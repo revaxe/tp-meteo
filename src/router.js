@@ -19,7 +19,8 @@ const routes = [
                 component: HourlyForcast
             }
         ]
-    }
+    },
+    { path: '*', redirect: '/' }
 ];
 
 const router = new VueRouter({
