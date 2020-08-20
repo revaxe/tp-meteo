@@ -58,8 +58,7 @@ export default {
               wind: data.wind.speed,
               windDegree: data.wind.deg,
               humidity: data.main.humidity,
-              pressure: data.main.pressure,
-
+              pressure: data.main.pressure
             }
           })
     }
