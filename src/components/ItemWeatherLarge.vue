@@ -13,8 +13,8 @@
                     <img :src="weather.icon" alt="" width="128">
                 </div>
             </div>
-            <span><img src="images/icon-umberella.png" alt="">{{weather.humidity}}%</span>
-            <span><img src="images/icon-wind.png" alt="">{{weather.wind}}km/h</span>
+            <span><img src="/images/icon-umberella.png" alt="">{{weather.humidity}}%</span>
+            <span><img src="/images/icon-wind.png" alt="">{{weather.wind}}km/h</span>
         </div>
     </div>
 </template>
@@ -27,3 +27,8 @@
         }
     }
 </script>
+<style scoped>
+.link {
+  cursor: pointer;
+}
+</style>

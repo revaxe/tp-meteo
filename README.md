@@ -2,10 +2,13 @@
 
 
 ## Objectifs
-###Renseigner la ville dans l'url lors de sa sélection
-- Utiliser le router pour renseigner la ville sélectionnée dans l'url
-- Utiliser le router pour récupérer la ville dans l'url et mettre à jour le store
-
+###Accéder au détail d’une journée
+- Créer une route pour accéder au détail
+   - Ex /Paris,France/vendredi/heure-par-heure
+   - Utiliser le composant HourlyForcast.vue
+- Ajouter le lien d’accès à la route
+- Ajouter une classe active quand on clique sur un jour
+- Ajouter une redirection quand une route n'est pas trouvée
 
 
 ## Project setup

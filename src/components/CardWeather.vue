@@ -14,12 +14,15 @@
 <script>
     import ItemWeatherSmall from '@/components/ItemWeatherSmall.vue'
     import ItemWeatherLarge from '@/components/ItemWeatherLarge.vue'
-    import {mapState} from "vuex";
+    import {mapGetters, mapState} from "vuex";
 
     export default {
         components: {
             ItemWeatherSmall, ItemWeatherLarge
         },
-        computed: mapState(['weatherCurrent', 'weatherForcasts', 'city'])
+        computed: {
+          ...mapState(['weatherCurrent', 'city']),
+          ...mapGetters(['weatherForcasts'])
+        }
     }
 </script>

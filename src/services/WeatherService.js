@@ -23,27 +23,8 @@ export const WeatherService = {
             })
     },
     getForcast: (city, countryCode) => {
-        return fetch(`${urlApi}/forecast?APPID=${keyApi}&q=${city},${countryCode}&units=metric`)
+        return fetch(`${urlApi}/forecast?APPID=${keyApi}&q=${city},${countryCode}&units=metric&lang=fr`)
             .then(response => response.json())
-            .then(data => {
-                let forecasts = [];
-                let now = Vue.moment();
-
-                let dataFiltered = Vue._.filter(data.list, item => {
-                    let dateItem = Vue.moment.unix(item.dt);
-                    return Vue._.inRange(Vue.moment.unix(item.dt).format('HH'), 12, 15) && dateItem.isAfter(now, 'day');
-                });
-
-                Vue._.each(dataFiltered, item => {
-                    forecasts.push({
-                        date: item.dt,
-                        labelDay : Vue.moment.unix(item.dt).format('dddd'),
-                        temp: item.main.temp,
-                        weather: item.weather[0].main,
-                        icon: icon(item.weather[0].icon.substring(0, 2) + 'd')
-                    })
-                });
-                return forecasts
-            })
+            .then(data => data.list)
     }
 };

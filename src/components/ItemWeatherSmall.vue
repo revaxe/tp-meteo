@@ -19,3 +19,8 @@
         }
     }
 </script>
+<style scoped>
+.link {
+  cursor: pointer;
+}
+</style>

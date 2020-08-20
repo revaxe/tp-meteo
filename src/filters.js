@@ -4,7 +4,7 @@ Vue.filter('capitalize', val => Vue._.capitalize(val));
 Vue.filter('round', val => val ? Math.round(val) : val);
 
 export const icon = iconId => {
-    let url = 'images/weather_icons/';
+    let url = '/images/weather_icons/';
     switch (iconId) {
         case '01d':
             return url + 'day.svg';
@@ -28,3 +28,8 @@ export const icon = iconId => {
     return url + 'day.svg';
 };
 Vue.filter('icon', icon);
+
+Vue.filter('windDirection', function (d) {
+    let directions = ['Nord', 'Nord-Est', 'Est', 'Sud-Est', 'Sud', 'Sud-Ouest', 'Ouest', 'Nord-Ouest'];
+    return `${directions[parseInt((d < 0 ? 360 - Math.abs(d) % 360 : d % 360) / 45)]}`;
+})
