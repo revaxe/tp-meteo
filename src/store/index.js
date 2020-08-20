@@ -29,7 +29,6 @@ export default new Vuex.Store({
                     icon: icon(item.weather[0].icon.substring(0, 2) + 'd')
                 }
             })
-
         }
     },
     mutations: {
