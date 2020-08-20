@@ -28,3 +28,8 @@ export const icon = iconId => {
     return url + 'day.svg';
 };
 Vue.filter('icon', icon);
+
+Vue.filter('windDirection', function (d) {
+    let directions = ['Nord', 'Nord-Est', 'Est', 'Sud-Est', 'Sud', 'Sud-Ouest', 'Ouest', 'Nord-Ouest'];
+    return `${directions[parseInt((d < 0 ? 360 - Math.abs(d) % 360 : d % 360) / 45)]}`;
+})
