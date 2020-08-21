@@ -39,11 +39,11 @@ import {mapState} from "vuex";
 import {icon} from "@/filters";
 
 export default {
+  props: {
+    day: String
+  },
   computed: {
-    ...mapState(['city', 'forcasts']),
-    day() {
-      return this.$route.params.day
-    },
+    ...mapState(['forcasts']),
     forcastDay() {
       return this._.filter(this.forcasts, forcast => Vue.moment.unix(forcast.dt).format('dddd') === this.day)
           .map(function (data) {
@@ -70,3 +70,4 @@ export default {
   }
 }
 </script>
+

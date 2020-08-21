@@ -16,7 +16,8 @@ const routes = [
             {
                 name: 'hourly',
                 path: ':day/heure-par-heure',
-                component: HourlyForcast
+                component: HourlyForcast,
+                props: true
             }
         ]
     },
