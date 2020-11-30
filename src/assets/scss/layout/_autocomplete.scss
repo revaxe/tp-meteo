@@ -10,7 +10,7 @@
   cursor: default;
   padding: 12px 12px 12px 48px;
 
-  &:hover, [aria-selected=true] {
+  &:hover, &[aria-selected=true] {
     background-color: rgba(0, 154, 216, .1);
     cursor: pointer;
   }
