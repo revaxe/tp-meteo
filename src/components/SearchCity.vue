@@ -49,6 +49,7 @@
             selectCity(city) {
                 this.cities = undefined;
                 this.$store.dispatch('updateCity', city);
+                this.$router.push({name: 'home', query: {city: `${city.address.city},${city.address.country}`}});
             },
             getLabelCity: city => city ? `${city.address.city}, ${city.address.country}` : '',
             cancelSelection() {
