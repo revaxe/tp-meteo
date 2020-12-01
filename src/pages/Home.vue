@@ -14,6 +14,13 @@
 
     export default {
         name: 'home',
-        components: {SearchCity, CardWeather}
+        components: {
+            SearchCity, CardWeather
+        },
+        async created() {
+            let position = await this.$getLocation();
+            if (position)
+                await this.$store.dispatch('updatePosition', position);
+        }
     }
 </script>
