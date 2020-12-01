@@ -5,10 +5,10 @@
                 <div data-position="below" class="autocomplete">
                     <input v-model="form.city" placeholder="Trouver votre ville..." type="text">
                     <ul role="listbox" id="autocomplete-result-list-1" class="autocomplete-result-list">
-                        <li id="autocomplete-result-0" data-result-index="0" role="option" class="autocomplete-result"> Bruges,
+                        <li id="autocomplete-result-0" data-result-index="0" role="option" class="autocomplete-result" aria-selected="false"> Bruges,
                             Belgique
                         </li>
-                        <li id="autocomplete-result-1" data-result-index="1" role="option" class="autocomplete-result"> Brugg,
+                        <li id="autocomplete-result-1" data-result-index="1" role="option" class="autocomplete-result" aria-selected="false"> Brugg,
                             Suisse
                         </li>
                     </ul>
