@@ -10,7 +10,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "element-ui": "^2.13.2",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "vue": "^2.6.11",
     "vue-browser-geolocation": "^1.8.0",
     "vue-lazyload": "^1.3.3",
